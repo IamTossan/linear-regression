@@ -1,6 +1,6 @@
 import numpy as np
 
-from .main import model, cost_function, grad, gradient_descent
+from .main import model, cost_function, grad, gradient_descent, coef_determination
 
 
 class TestModel:
@@ -91,3 +91,16 @@ class TestGradientDescent:
 
         assert format(final_theta[0][0], ".3f") == format(2 - (14 / 3), ".3f")
         assert final_theta[1][0] == -6 / 3
+
+
+class TestCoefDetermination:
+    def test_duplicate(self):
+        ys = np.array([[1], [2], [3]])
+
+        assert coef_determination(ys, ys) == 1
+
+    def test_simple(self):
+        ys = np.array([[1], [2], [3]])
+        pred = np.array([[1], [2], [4]])
+
+        assert coef_determination(ys, pred) == 0.5
