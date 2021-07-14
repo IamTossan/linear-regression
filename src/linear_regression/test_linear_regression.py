@@ -1,6 +1,6 @@
 import numpy as np
 
-from .main import model, cost_function, grad, gradient_descent, coef_determination
+from . import model, cost_function, grad, gradient_descent, coef_determination
 
 
 class TestModel:
