@@ -1,4 +1,4 @@
-# Linear Regression
+# Machine learning algorythms
 
 ## Setup
 
