@@ -1,30 +1,10 @@
 import numpy as np
 
 
-def model(X, theta):
-    """returns a m * 1 sized matrix of predictions"""
-    return X.dot(theta)
-
-
 def cost_function(prediction, actual):
     """returns a number"""
     m = len(actual)
     return 1 / (2 * m) * np.sum((prediction - actual) ** 2)
-
-
-def grad(X, pred, y):
-    """returns a (n+1) * 1 matrix"""
-    m = len(y)
-    return 1 / m * X.T.dot(pred - y)
-
-
-def gradient_descent(X, y, theta, learning_rate, n_iterations):
-    cost_history = np.zeros(n_iterations)
-    for i in range(n_iterations):
-        pred = model(X, theta)
-        theta = theta - learning_rate * grad(X, pred, y)
-        cost_history[i] = cost_function(pred, y)
-    return theta, cost_history
 
 
 # R^2
@@ -32,3 +12,31 @@ def coef_determination(y, pred):
     u = ((y - pred) ** 2).sum()
     v = ((y - y.mean()) ** 2).sum()
     return 1 - u / v
+
+
+class LinearRegression:
+    @staticmethod
+    def addOnesColumn(X):
+        return np.hstack((X, np.ones((X.shape[0], 1))))
+
+    def __init__(self, learning_rate=0.001, n_iters=1000):
+        self.lr = learning_rate
+        self.n_iters = n_iters
+        self.theta = None
+
+    def model(self, X):
+        return X.dot(self.theta)
+
+    def fit(self, rawX, y):
+        n_samples, n_features = rawX.shape
+
+        self.theta = np.zeros((n_features + 1, 1))
+        X = self.addOnesColumn(rawX)
+
+        for _ in range(self.n_iters):
+            y_predicted = self.model(X)
+            self.theta -= self.lr * (1 / n_samples) * X.T.dot(y_predicted - y)
+
+    def predict(self, X):
+        y_approximated = self.model(self.addOnesColumn(X))
+        return y_approximated

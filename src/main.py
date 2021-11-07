@@ -1,27 +1,25 @@
 import matplotlib.pyplot as plt
 
-from linear_regression import model, coef_determination, gradient_descent
-from utils import make_random_data
+from linear_regression import LinearRegression
 
+from utils import make_random_data, mean_square_error, coef_determination
 
-xs, y, theta = make_random_data()
+X, y = make_random_data(n_features=1)
+linear_regresion = LinearRegression(learning_rate=0.01)
 
 # Learning phase
-theta_final, cost_history = gradient_descent(
-    xs, y, theta, learning_rate=0.01, n_iterations=1000
-)
+linear_regresion.fit(X, y)
 
 # Using model
-predictions = model(xs, theta_final)
+predictions = linear_regresion.predict(X)
 coef = coef_determination(y, predictions)
 
-print("theta final: ", theta_final)
-print("coef: ", coef)
+print("a:", linear_regresion.theta[0, 0])
+print("b:", linear_regresion.theta[1, 0])
+print("mse: ", mean_square_error(y, predictions))
+print("accuracy:", coef)
 
 # Display visuals
-plt.scatter(xs[:, 0], y)
-plt.plot(xs[:, 0], predictions, c="r")
-plt.show()
-
-plt.plot(range(1000), cost_history)
+plt.scatter(X[:, 0], y)
+plt.plot(X[:, 0], predictions, c="r")
 plt.show()
