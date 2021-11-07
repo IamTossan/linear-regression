@@ -1,6 +1,6 @@
 import numpy as np
 
-from utils import cost_function, coef_determination
+from .utils import cost_function, coef_determination
 
 
 class TestCostFunction:

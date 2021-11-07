@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 
-from linear_regression import LinearRegression
+from .linear_regression import LinearRegression
 
-from utils import make_random_data, mean_square_error, coef_determination
+from src.utils import make_random_data, mean_square_error, coef_determination
 
 X, y = make_random_data(n_features=1)
 linear_regresion = LinearRegression(learning_rate=0.01)
