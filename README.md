@@ -1,4 +1,4 @@
-# Machine learning algorythms
+# Machine learning algorithms
 
 ## Setup
 
@@ -11,8 +11,8 @@ pip install -r requirements.txt
 ## Commands
 
 ```
-black src/                  # format the files
-pytest                      # run tests
-python src/main.py          # run the script
-python -m src/<ALGO_NAME>   # run a demo of an algorythm
+black src/                      # format the files
+pytest                          # run tests
+python src/main.py              # run the script
+python -m src.<module_name>     # run a demo of an algorythm
 ```
