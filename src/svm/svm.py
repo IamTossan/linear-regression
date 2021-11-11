@@ -14,15 +14,11 @@ class SVM:
 
         y_ = np.where(y <= 0, -1, 1)
 
-        print(y_)
-
         self.w = np.zeros(n_features)
         self.b = 0
 
         for i in range(self.n_iters):
-
             for idx, x_i in enumerate(X):
-
                 isCorrectlyClassified = y_[idx] * (np.dot(x_i, self.w) - self.b) >= 1
 
                 dw = (2 * self.lambda_param * self.w) - (
