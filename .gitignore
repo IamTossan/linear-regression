@@ -1,3 +1,5 @@
 venv/
 __pycache__/
 .pytest_cache/
+src/free_code_camp/*.csv
+src/free_code_camp/*.zip
